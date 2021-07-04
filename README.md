@@ -10,3 +10,15 @@ Then
 ```bash
 curl "http://localhost:5000/POW?a=2&b=3"
 ```
+## Known issues
+cannot convert from 'double' to 'string'
+Just set:
+```bash
+await context.Response.WriteAsync(Math.Pow(a,b)); 
+```
+To 
+```bash
+await context.Response.WriteAsync("POW " + Math.Pow(a,b));
+```
+In Startup.cs then here you go
+it'll be fix very soon...

@@ -34,6 +34,13 @@ namespace DotnetWeb
                 {
                     await context.Response.WriteAsync("Hello World!");
                 });
+				endpoints.MapGet("/POV", async context =>
+                {
+					var queryCollection = context.Request.Query;
+                    var a = Convert.ToInt32(queryCollection["a"]);
+                    var b = Convert.ToInt32(queryCollection["b"]);
+                    await context.Response.WriteAsync("POV " + Math.Pow(a,b));
+                });		   
             });
         }
     }

@@ -20,5 +20,4 @@ To
 ```bash
 await context.Response.WriteAsync("POW " + Math.Pow(a,b));
 ```
-In Startup.cs then here you go
-it'll be fix very soon...
+In Startup.cs then here you go (it'll be fix very soon...)

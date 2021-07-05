@@ -11,8 +11,8 @@ dotnet sln add .\App
 cd ./App
 dotnet run
 ```
-Modify launchSettings.json in \Omega\App\Properties\launchSettings.json directory and remove https from applicationUrl
-Modify your Startup.cs and write your script (in this case Added a new MapGet and context.Response to POW 2 entities) 
+- Modify launchSettings.json in \Omega\App\Properties\launchSettings.json directory and remove https from applicationUrl ;
+- Modify your Startup.cs and write your script (in this case Added a new MapGet and context.Response to POW 2 entities) 
 
 ## Quickstart Docker time:
 Start omega using:

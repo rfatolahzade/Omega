@@ -39,7 +39,7 @@ namespace App
                     var queryCollection = context.Request.Query;
                     var a = Convert.ToInt32(queryCollection["a"]);
                     var b = Convert.ToInt32(queryCollection["b"]);
-                    await context.Response.WriteAsync(Math.Pow(a,b));
+                    await context.Response.WriteAsync(Math.Pow(a,b).ToString());
                 });		   
             });
         }

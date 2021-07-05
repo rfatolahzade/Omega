@@ -1,6 +1,10 @@
 # Omega Project
 Step by step with dotnet web
-
+```bash
+dotnet new web
+```
+Modify launchSettings.json in \Omega\App\Properties\launchSettings.json directory and remove https from applicationUrl
+Modify your Startup.cs and write your script (in this case Added a new MapGet and context.Response to POW 2 entities) 
 ## Quickstart
 Start omega using:
 ```bash

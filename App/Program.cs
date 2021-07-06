@@ -28,6 +28,8 @@ namespace App
                         options.BeforeSend = delegate(SentryEvent sentryEvent)
                         {
                             sentryEvent.User = new User {Username ="Madness-Client"};
+                            sentryEvent.SetExtra("Test",".NetCore");
+                            sentryEvent.SetTag("App","omega");
                             return sentryEvent;
                         };
                     });

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
+using Sentry.AspNetCore;
 namespace App
 {
     public class Startup
@@ -27,7 +27,7 @@ namespace App
             }
 
             app.UseRouting();
-
+            app.UseSentryTracing();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGet("/", async context =>

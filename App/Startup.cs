@@ -40,7 +40,11 @@ namespace App
                     var a = Convert.ToInt32(queryCollection["a"]);
                     var b = Convert.ToInt32(queryCollection["b"]);
                     await context.Response.WriteAsync(Math.Pow(a,b).ToString());
-                });		   
+                });	
+                endpoints.MapGet("/Exception", async context =>
+                {
+                    throw new ApplicationException("An Exception Occured!");
+                });
             });
         }
     }

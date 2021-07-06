@@ -23,3 +23,8 @@ Then
 ```bash
 curl "http://localhost:5000/POW?a=2&b=3"
 ```
+
+Set your Dsn to Program.cs and to catching exception on your Sentry Server :
+```bash
+curl "http://localhost:5000/Exception"
+```

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Sentry;
 
 namespace App
 {
@@ -21,6 +22,15 @@ namespace App
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                    webBuilder.UseSentry(options =>
+                    {
+                        options.Dsn = "https://d84018cdc2bb4879a7d6b23d29fed5f5@sentry.rayvarz.cloud/7";
+                        options.BeforeSend = delegate(SentryEvent sentryEvent)
+                        {
+                            sentryEvent.User = new User {Username ="Madness-Client"};
+                            return sentryEvent;
+                        };
+                    });
                 });
     }
 }

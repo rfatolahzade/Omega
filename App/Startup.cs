@@ -14,13 +14,9 @@ namespace App
 {
     public class Startup
     {
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
         }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -47,31 +43,17 @@ namespace App
                 });
                 endpoints.MapGet("/POW", async context =>
                 {
-                    var transaction = SentrySdk.StartTransaction(
-                        "PowTra",
-                        "PowTra-operation"
-                    );
-                    var span = transaction.StartChild("PowTra-child-operation");
-                    SentrySdk.GetTraceHeader();
                     var queryCollection = context.Request.Query;
                     var a = Convert.ToInt32(queryCollection["a"]);
                     var b = Convert.ToInt32(queryCollection["b"]);
-                    await context.Response.WriteAsync(Math.Pow(a,b).ToString());
-                    span.Finish();
-                    transaction.Finish();
+                    if (a == 2 && b == 3)
+                        System.Threading.Thread.Sleep(5000);
+                    await context.Response.WriteAsync(Math.Pow(a, b).ToString());
                 });	
-                var transaction = SentrySdk.StartTransaction(
-                    "ExceptionTra",
-                    "Exception-operation"
-                );
-                var span = transaction.StartChild("ExceptionTra-child-operation");
-                SentrySdk.GetTraceHeader();
                 endpoints.MapGet("/Exception", async context =>
                 {
                     throw new ApplicationException("An Exception Occured!");
                 });
-                span.Finish();
-                transaction.Finish();
             });
         }
     }

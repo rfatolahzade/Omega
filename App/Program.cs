@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
@@ -21,7 +22,7 @@ namespace App
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseStartup<Startup>().UseWebRoot(Path.Combine(Directory.GetCurrentDirectory(), "FrontEnd"));
                     webBuilder.UseSentry(options =>
                     {
                         options.Dsn = "https://d84018cdc2bb4879a7d6b23d29fed5f5@sentry.rayvarz.cloud/7";

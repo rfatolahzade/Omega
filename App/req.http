@@ -1,0 +1,2 @@
+﻿#GET http://localhost:5000/POW?a=2&b=2
+GET http://localhost:5000

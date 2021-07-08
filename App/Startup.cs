@@ -25,10 +25,14 @@ namespace App
             }
 
             app.UseRouting();
+            
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+            
             app.UseSentryTracing();
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
+                endpoints.MapGet("/Hello", async context =>
                 {
                     
                     var transaction = SentrySdk.StartTransaction(

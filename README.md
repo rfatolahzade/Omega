@@ -28,3 +28,7 @@ Set your Dsn to Program.cs and to catching exception on your Sentry Server :
 ```bash
 curl "http://localhost:5000/Exception"
 ```
+Put your FrontEnd file in :/root/dotnet/Omega/  then:
+```bash
+docker run -it -p 5000:80 -v /root/dotnet/Omega/:/app/FrontEnd --rm ghcr.io/rfinland/omega:master
+```

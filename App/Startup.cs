@@ -36,10 +36,10 @@ namespace App
                 {
                     
                     var transaction = SentrySdk.StartTransaction(
-                        "MyIndexTra",
-                        "MyIndexTra-operation"
+                        "HelloPage",
+                        "HelloPage-operation"
                     );
-                    var span = transaction.StartChild("MyIndexTra-child-operation");
+                    var span = transaction.StartChild("HelloPage-child-operation");
                     SentrySdk.GetTraceHeader();
                     await context.Response.WriteAsync("Hello World!");
                     span.Finish();

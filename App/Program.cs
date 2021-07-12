@@ -26,7 +26,7 @@ namespace App
                     webBuilder.UseSentry(options =>
                     {
                         options.Dsn = "https://d84018cdc2bb4879a7d6b23d29fed5f5@sentry.rayvarz.cloud/7";
-                        options.Debug = true;
+                        // options.Debug = true;
                         options.TracesSampleRate = 1.0;
                         options.BeforeSend = delegate(SentryEvent sentryEvent)
                         {

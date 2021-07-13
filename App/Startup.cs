@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -32,6 +33,24 @@ namespace App
             app.UseSentryTracing();
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapGet("/", async (context) =>
+                {
+                    SentryId sentryId = SentrySdk.GetSpan().TraceId;
+                    string traceId = sentryId.ToString();
+                    
+                    string content = null;
+                    string filePath = Path.Combine(Path.GetFullPath("."), "FrontEnd", "index.html");
+                    if (File.Exists(filePath))
+                    {
+                        List<string> lines = File.ReadAllLines(filePath).ToList();
+                        string spanId = traceId;
+                        string meta = $"<meta name=\"sentry-trace\" content=\"{spanId}\" />";
+                        lines.Insert(5, meta);
+                        content = string.Join("\r\n", lines);
+                    }
+                    await context.Response.WriteAsync(content);
+                });
+                
                 endpoints.MapGet("/Hello", async context =>
                 {
                     
@@ -48,6 +67,7 @@ namespace App
                 endpoints.MapGet("/POW", async context =>
                 {
                     Console.WriteLine(SentrySdk.GetSpan().TraceId);
+                    Console.WriteLine("**" + SentrySdk.GetTraceHeader().TraceId);
                     var queryCollection = context.Request.Query;
                     var a = Convert.ToInt32(queryCollection["a"]);
                     var b = Convert.ToInt32(queryCollection["b"]);

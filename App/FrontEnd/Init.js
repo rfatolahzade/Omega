@@ -8,31 +8,32 @@
 Sentry.init({
     // integrationsT,
     environment: "Testing",
-    dsn: "https://d84018cdc2bb4879a7d6b23d29fed5f5@sentry.rayvarz.cloud/7",
+    dsn: "https://7ceb6f89b1a54369af4de126849da0ee@sentry.rayvarz.dev/2",
     tracesSampleRate: 1.0,
     integrations: [new Sentry.Integrations.BrowserTracing()],
     sampleRate: 1.0,
-    initialScope: {
-        tags: {"Client": "ClientRequests88"},
-        user: {id: 1, email: "rfinland88@gmail.com"},
-        transaction() {
-            const transaction = Sentry.startTransaction({ name: "transaction" });
-            Sentry.getCurrentHub().configureScope(scope => scope.setSpan(transaction));
-            const result = POW();
+});
+//    initialScope: {
+//        tags: {"Client": "ClientRequests88"},
+//        user: {id: 1, email: "rfinland88@gmail.com"},
+//        transaction() {
+//            const transaction = Sentry.startTransaction({ name: "transaction" });
+//            Sentry.getCurrentHub().configureScope(scope => scope.setSpan(transaction));
+//            const result = POW();
 
-            const span = transaction.startChild({
-                data: {
-                    result
-                },
-                op: 'task',
-                description: 'Client requests',
-            });
-            POW(result);
-            span.finish();
+//            const span = transaction.startChild({
+//                data: {
+//                    result
+//                },
+//                op: 'task',
+//                description: 'Client requests',
+//            });
+//            POW(result);
+//            span.finish();
 
-            transaction.finish();
-        }    
-    },
+//            transaction.finish();
+//        }    
+//    },
     // this assumes your build process sets "npm_package_version" in the env
     // release: "my-project-name@" + process.env.npm_package_version,
     // integrations: [new MyAwesomeIntegration()],
@@ -50,5 +51,5 @@ Sentry.init({
     //     }
     //     return event;
     // },   // For more:https://docs.sentry.io/platforms/javascript/configuration/filtering/
-});
+
 // Sentry.setTag("rrweb.active", hasReplays ? "yes" : "no");

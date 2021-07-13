@@ -47,6 +47,7 @@ namespace App
                 });
                 endpoints.MapGet("/POW", async context =>
                 {
+                    Console.WriteLine(SentrySdk.GetSpan().TraceId);
                     var queryCollection = context.Request.Query;
                     var a = Convert.ToInt32(queryCollection["a"]);
                     var b = Convert.ToInt32(queryCollection["b"]);

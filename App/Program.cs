@@ -25,7 +25,7 @@ namespace App
                     webBuilder.UseStartup<Startup>().UseWebRoot(Path.Combine(Directory.GetCurrentDirectory(), "FrontEnd"));
                     webBuilder.UseSentry(options =>
                     {
-                        options.Dsn = "https://d84018cdc2bb4879a7d6b23d29fed5f5@sentry.rayvarz.cloud/7";
+                        options.Dsn = "https://7ceb6f89b1a54369af4de126849da0ee@sentry.rayvarz.dev/2";
                         // options.Debug = true;
                         options.TracesSampleRate = 1.0;
                         options.BeforeSend = delegate(SentryEvent sentryEvent)

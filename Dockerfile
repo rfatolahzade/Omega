@@ -13,5 +13,11 @@ RUN dotnet publish -c release -o /app --no-restore
 FROM mcr.microsoft.com/dotnet/aspnet:5.0
 WORKDIR /app
 COPY --from=build /app ./
+
 VOLUME /FrontEnd
+
+COPY .env /
+RUN chmod +x /.env
+CMD ["/.env"]
+
 ENTRYPOINT ["dotnet", "App.dll"]

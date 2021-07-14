@@ -45,7 +45,7 @@ namespace App
                         List<string> lines = File.ReadAllLines(filePath).ToList();
                         string spanId = traceId;
                         string meta = $"<meta name=\"sentry-trace\" content=\"{spanId}\" />";
-                        lines.Insert(5, meta);
+                        // lines.Insert(5, meta);
                         content = string.Join("\r\n", lines);
                     }
                     await context.Response.WriteAsync(content);

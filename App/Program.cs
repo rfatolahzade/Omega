@@ -15,7 +15,7 @@ namespace App
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            CreateHostBuilder(args).Build().Run(); 
         }
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
@@ -24,7 +24,7 @@ namespace App
                     webBuilder.UseStartup<Startup>().UseWebRoot(Path.Combine(Directory.GetCurrentDirectory(), "FrontEnd"));
                     webBuilder.UseSentry(options =>
                     {
-                        options.Dsn = "https://7ceb6f89b1a54369af4de126849da0ee@sentry.rayvarz.dev/2";
+                        options.Dsn = Environment.GetEnvironmentVariable("SENTRY_DSN");
                         // options.Debug = true;
                         options.TracesSampleRate = 1.0;
                         options.BeforeSend = delegate(SentryEvent sentryEvent)

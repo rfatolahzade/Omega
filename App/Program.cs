@@ -1,12 +1,7 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Sentry;
 
 namespace App
@@ -25,7 +20,6 @@ namespace App
                     webBuilder.UseSentry(options =>
                     {
                         options.Dsn = Environment.GetEnvironmentVariable("SENTRY_DSN");
-                        // options.Debug = true;
                         options.TracesSampleRate = 1.0;
                         options.BeforeSend = delegate(SentryEvent sentryEvent)
                         {

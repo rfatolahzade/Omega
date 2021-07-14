@@ -16,8 +16,4 @@ COPY --from=build /app ./
 
 VOLUME /FrontEnd
 
-COPY .env /
-RUN chmod +x /.env
-CMD ["/.env"]
-
 ENTRYPOINT ["dotnet", "App.dll"]

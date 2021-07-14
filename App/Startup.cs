@@ -1,8 +1,5 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -24,12 +21,9 @@ namespace App
             {
                 app.UseDeveloperExceptionPage();
             }
-
             app.UseRouting();
-            
             app.UseDefaultFiles();
             app.UseStaticFiles();
-            
             app.UseSentryTracing();
             app.UseEndpoints(endpoints =>
             {
@@ -38,20 +32,17 @@ namespace App
                     SentryId sentryId = SentrySdk.GetSpan().TraceId;
                     string traceId = sentryId.ToString();
                     
-                    string content = null;
                     string filePath = Path.Combine(Path.GetFullPath("."), "FrontEnd", "index.html");
-                    content = File.ReadAllText(filePath);
+                    string content = File.ReadAllText(filePath);
                     content = content.Replace("#Trace_Id", traceId);
                     
                     var sentry_dsn = Environment.GetEnvironmentVariable("SENTRY_DSN");
-                    // context.Response.Cookies.Append("SENTRY_DSN", sentry_dsn);
                     context.Response.Headers.Append("Set-Cookie", "SENTRY_DSN" + "=" + sentry_dsn + "; path=/");
                     await context.Response.WriteAsync(content);
                 });
                 
                 endpoints.MapGet("/Hello", async context =>
                 {
-                    
                     var transaction = SentrySdk.StartTransaction(
                         "HelloPage",
                         "HelloPage-operation"

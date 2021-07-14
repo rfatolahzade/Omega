@@ -32,3 +32,7 @@ Put your FrontEnd file in :/root/dotnet/Omega/  then:
 ```bash
 docker run -it -p 5000:80 -v /root/dotnet/Omega/:/app/FrontEnd --rm ghcr.io/rfinland/omega:master
 ```
+To setting up the DSN link:
+```bash
+docker run -it -p 5000:80 -v /root/dotnet/Omega/:/app/FrontEnd -e SENTRY_DSN="Your_Link_Here" --rm ghcr.io/rfinland/omega:master
+```

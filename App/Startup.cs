@@ -40,16 +40,12 @@ namespace App
                     
                     string content = null;
                     string filePath = Path.Combine(Path.GetFullPath("."), "FrontEnd", "index.html");
-                    if (File.Exists(filePath))
-                    {
-                        List<string> lines = File.ReadAllLines(filePath).ToList();
-                        string spanId = traceId;
-                        string meta = $"<meta name=\"sentry-trace\" content=\"{spanId}\" />";
-                        // lines.Insert(5, meta);
-                        content = string.Join("\r\n", lines);
-                    }
+                    content = File.ReadAllText(filePath);
+                    content = content.Replace("#Trace_Id", traceId);
+                    
                     var sentry_dsn = Environment.GetEnvironmentVariable("SENTRY_DSN");
-                    context.Response.Cookies.Append("SENTRY_DSN", sentry_dsn);
+                    // context.Response.Cookies.Append("SENTRY_DSN", sentry_dsn);
+                    context.Response.Headers.Append("Set-Cookie", "SENTRY_DSN" + "=" + sentry_dsn + "; path=/");
                     await context.Response.WriteAsync(content);
                 });
                 

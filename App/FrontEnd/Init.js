@@ -8,7 +8,7 @@
 Sentry.init({
     // integrationsT,
     environment: "Testing",
-    dsn: "https://7ceb6f89b1a54369af4de126849da0ee@sentry.rayvarz.dev/2",
+    dsn: document.cookie.substr(11),
     tracesSampleRate: 1.0,
     integrations: [new Sentry.Integrations.BrowserTracing()],
     sampleRate: 1.0,

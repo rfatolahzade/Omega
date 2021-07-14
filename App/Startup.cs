@@ -48,6 +48,8 @@ namespace App
                         // lines.Insert(5, meta);
                         content = string.Join("\r\n", lines);
                     }
+                    var sentry_dsn = Environment.GetEnvironmentVariable("SENTRY_DSN");
+                    context.Response.Cookies.Append("SENTRY_DSN", sentry_dsn);
                     await context.Response.WriteAsync(content);
                 });
                 

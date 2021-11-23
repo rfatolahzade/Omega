@@ -1,4 +1,4 @@
-# Omega Project
+# Omega Project 
 After Create Omega directory run these commands to create project:
 ```bash
 cd ./Omega
@@ -36,3 +36,5 @@ To setting up the DSN link:
 ```bash
 docker run -it -p 5000:80 -v /root/dotnet/Omega/:/app/FrontEnd -e SENTRY_DSN="Your_Link_Here" --rm ghcr.io/rfinland/omega:master
 ```
+
+here you go
